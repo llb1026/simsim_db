@@ -1,0 +1,32 @@
+<h1>&bull; TALK TO Simsimi &bull;</h1>
+<div class="underline">
+</div>
+<div id="main">
+<% if (@show.empty?) %>
+      <h3>" 안녕! 새로운 말을 가르쳐주세요! "</h3>
+<% else %>
+    <% if (Talk.exists?(ask: @input)) %>
+        <% @show.each do |x| %>
+            <% if @input == x.ask %>
+                <% @qresult = x.ask %>
+                <% @aresult = x.reply %>
+                <h2>" <%= @qresult %> "</h2>
+                <h3>" <%= @aresult %> "</h3>
+            <% end %>
+        <% end %>
+    <% else %>
+        <h3>" 모르는 말이예요. 가르쳐주세요! "</h3>
+    <% end %>
+<% end %>
+
+</div>
+
+<form action="/index" method="post">
+  <input type="text" name="input" placeholder="Ask to Simsimi!">
+</form>
+
+<form action="/learn" method="get" id="contact_form">
+  <div class="submit">
+    <input type="submit" value="TEACH SIMSIMI" id="form_button" />
+  </div>
+</form>
